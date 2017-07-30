@@ -1,0 +1,9 @@
+{
+	"debugServerAddress":"http://localhost:8092",
+	"serverAddress":"http://localhost:8092",
+	"adminServerAddress":"http://121.40.254.174:8101",
+	"machineServerAddress":"http://yzxs.sujudao.com:8097",
+	"webAddress":"http://yzxs.sujudao.com/yxd",
+	"wechatServerAddress":"http://localhost:8090",
+	"appId":"wx7fdd16d11d66d539"
+}
