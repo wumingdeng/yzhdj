@@ -2,36 +2,20 @@
 	<f7-card @click.native="onDetail">
 		<f7-card-header style="">
 			<p>订单号：{{orderData.id}}</p>
-			<p style="float:right">{{statusName[orderData.status]}}</p>
+			<p style="float:right">{{orderData.price}}元   {{statusName[orderData.status]}}</p>
 		</f7-card-header>
 		<f7-card-content>
 			<f7-grid>
-				<f7-col width=30>
+				<f7-col width=20>
 					<img class="oc_orderImg" :src="orderData.smallPic"></img>
 				</f7-col>
-				<f7-col width=70>
-					<div class="oc_right">
-						<span style="">{{orderData.shoeName}}</span>
-						<span style="color:#ff0000;font-size:1.5em;position:absolute;top:10px;right:16px;">¥{{orderData.price}}</span>
-						<p style="color:#71777f;white-space:nowrap;">尺码:{{orderData.size}}码 颜色:{{orderData.color}} 鞋型:{{orderData.type}}</p>
-						<p>订单时间:{{timeToDate(orderData.createtime,true)}}</p>
-					</div>
+				<f7-col width=80>
+						<span>服务名称:{{orderData.shoeName}}</span><br>
+						<span>服务内容:{{orderData.shoeName}}</span>
 				</f7-col>
 			</f7-grid>
-<!-- 			<div v-if="orderData.status==orderstatus.waitPay" style="height:40px;">
-				<p class="oc_time" style="float:right;overflow:hidden;">订单时间:{{timeToDate(orderData.createtime,true)}}</p>
-			</div> -->
-			<f7-grid v-if="orderData.status==orderstatus.waitPay" style="width:100%;height:30px">
-				<f7-col><f7-button  style="border-color:#fd7f97;color:#fd7f97" @click.stop.prevent="onCancel">取消</f7-button></f7-col>
-				<f7-col><f7-button  style="background-color:#fd7f97" fill @click.stop.prevent="onPay">支付</f7-button></f7-col>
-			</f7-grid>
-			<f7-grid v-if="orderData.status==orderstatus.waitReceipt" style="width:100%;height:30px">
-				<f7-col><f7-button  style="border-color:#fd7f97;color:#fd7f97" @click.stop.prevent="openLogistics">查看物流</f7-button></f7-col>
-				<f7-col><f7-button  style="background-color:#fd7f97" fill>确认收货</f7-button></f7-col>
-			</f7-grid>
-			<f7-grid v-if="orderData.status==orderstatus.waitEvaluate" style="width:100%;height:30px">
-				<f7-col></f7-col>
-				<f7-col><f7-button  style="background-color:#fd7f97" fill>评价</f7-button></f7-col>
+			<f7-grid>
+				<f7-col><div style='float:right'><f7-button  style="background-color:#fd7f97" fill>评价</f7-button></div></f7-col>
 			</f7-grid>
 		</f7-card-content>
 	</f7-card>
@@ -162,19 +146,6 @@
 		width:100%;
 		float:left;
 		display:inline-block;
-	}
-	.oc_right{
-		display:inline-block;
-		width:100%;
-		height:100px;
-		text-align:left;
-		overflow: hidden;
-	}
-	.oc_right span {
-		font-size: 1.3em;
-	}
-	.oc_right p {
-		margin-top: 0.7em;
 	}
 	.oc_cname{
 		display: inline-block;

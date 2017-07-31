@@ -7,12 +7,12 @@ import Login from '@/view/login'
 const Check = r => require.ensure([], () => r(require('@/view/check/Check')), 'moment')
 const Record = resolve => require(['@/view/check/Record'], resolve)
 // import Record from '@/view/check/Record'
-import Cycle from '@/view/check/Cycle'
 // import UserInfo from '@/view/UserInfo'
 // const UserInfo = resolve => require(['@/view/UserInfo'], resolve)
 const UserInfo = r => require.ensure([], () => r(require('@/view/UserInfo')), 'moment')
 import Foot from '@/view/foot/Foot'
 import shoeHome from '@/view/shoe/shoeHome'
+import home from '@/view/home/home'
 import shoeDetail from '@/view/shoe/shoeDetail'
 import Order from '@/view/shoe/order'
 import OrderDetail from '@/view/shoe/orderDetail'
@@ -20,6 +20,8 @@ import buyShoe from '@/view/shoe/buyShoe'
 // const Address = resolve => require(['@/view/shoe/address'], resolve)
 import Address from '@/view/shoe/address'
 import Pay from '@/view/shoe/pay'
+import manger from '@/view/foot/manger'
+import adpage from '@/view/home/adpage'
 
 // 根目录
 const rootPath = ''
@@ -34,6 +36,24 @@ var routes = [
     }
   },
 	{
+    path: '/adpage:m',
+    component: adpage, 
+    name: 'adpage',
+    meta: { 
+      // auth: true,
+      share: true
+    }
+	},
+	{
+    path: '/manger',
+    component: manger, 
+    name: 'manger',
+    meta: { 
+      // auth: true,
+      share: true
+    }
+	},
+	{
     path: '/check',
     component: Check, 
     name: 'check',
@@ -43,12 +63,9 @@ var routes = [
     }
 	},
   {
-    path: '/cycle',
-    component: Cycle, 
-    name: 'Cycle',
-    meta: { 
-      share: false
-    }
+    path: '/home',
+    component: home, 
+    name: 'home',
   },
 	{
     path: '/record',
@@ -80,7 +97,8 @@ var routes = [
     }
   },  
   {
-    path: '/shoeDetail',
+    path: '/shoeDetail:id',
+    name:'shoeDetail',
     component: shoeDetail,
     meta: { 
       auth: true,
@@ -130,7 +148,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => !record.meta.auth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    var isLogin = window.Global.s.state.isLogin
+    var isLogin = true
     if (!isLogin) {
       next({
         path: '/',
