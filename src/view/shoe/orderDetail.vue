@@ -22,13 +22,11 @@
 			</f7-card-header>
 				{{$store.state.productDetail.desc_content}}
 			<f7-card-content>
-				
 			</f7-card-content>
 			<f7-card-footer>
 				<f7-button style='margin:0px 0px 0px 110px;background-color:#ffffff;color:#000000;border:1px #ffffff' @click="onUpdateInfo">我已同意服务条款</f7-button>
 			</f7-card-footer>
 		</f7-card>
-		
  		<div class="navFooter">
         <span style="width:70%;"><f7-button style="background-color:#ffffff;color:#000000" class="pre">
           订金：{{100}}元
