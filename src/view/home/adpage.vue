@@ -26,7 +26,8 @@ export default {
     methods: {
         onBook() {
             console.log('dkdjkjdkj')
-            this.$router.push({ name: 'shoeDetail', params: { id: this.meun_obj.id } })
+            // this.$router.push({ name: 'shoeDetail', params: { id: this.meun_obj.id } })
+            this.$router.push({path:'/shoeDetail',query:{sid:this.meun_obj.id}})
         }
     },
 }

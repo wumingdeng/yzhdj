@@ -37,12 +37,10 @@
         -->
   		</f7-card>
       
-      <f7-button big fill style='margin:10px 10px 10px 10px;background-color:#fa7699' @click="onUpdateInfo">预订</f7-button>
+      <f7-button big fill style='margin:10px 10px 10px 10px;background-color:#fa7699' @click="onBook">预订</f7-button>
 
       </div>
     </f7-page-content>
-    
-    <service :isShow="isSHowService" @close="isSHowService=false"></service>
 	</f7-page>
 </template>
 
@@ -77,36 +75,12 @@
     			return []
     		}
     	},
-      photos() {
-        var pArr = []
-        for (var i = 1; i <= this.productData.introNum; ++i) {
-          pArr.push("static/assets/shoe/product/intro_p" + this.productData.pid + "/" + i +".jpg" + Global.verStr)
-        }
-        return pArr
-      }
     },
     methods:{
-      onTouchStart() {
-        console.log('touchstart')
+      onBook() {
+        this.$router.push('/orderDetail')
       },
-      openPhotoBrowser(index) {
-        console.log(index)
-        this.$refs.pb.open(index)
-        this.$refs.pb.enableExposition()
-      },
-      onClickPB(swiper,event) {
-        this.$nextTick(this.$refs.pb.close)
-        // setTimeout(this.$refs.pb.close,0)
-      },
-      onClickBuy() {
-        this.pickerOpened = true;
-      },
-      getImgSrc(n) {
-        return "static/assets/shoe/product/intro_p" + this.productData.pid + "/" + n +".jpg" + Global.verStr;
-      },
-      showService() {
-        this.isSHowService = true;
-      },
+     
       doIt:function() {
         //刷新一下。。。解决ios卡住的问题
         var card = document.getElementsByClassName('card')[0]
@@ -134,16 +108,8 @@
       this.$f7.resize();
       var isReload = this.$store.state.isReload;
       if (isReload) { 
-        // this.$store.state.isLogin = false
-        // this.$store.state.isReload = false
-        // this.$router.push({
-        //   path:'/',
-        //   query:{
-        //     page:'showDetail'
-        //   }
-        // })
+      
         window.location.reload(true)
-        // location.replace(document.referrer); 
         return
       }
       this.productData = this.$store.state.productDetail
@@ -159,27 +125,6 @@
       this.pickerOpened = false;
       this.$f7.closeModal()
     }
-    // mounted() {
-    // 	var sid = this.$route.query.sid;
-    // 	//查询产品信息
-    // 	this.$store.dispatch('getProductDetail', {
-    // 		self:this,
-    // 		info:{
-    // 			sid:sid
-    // 		},
-    // 		callback(self, res) {
-    // 			if (res.body.ok == 0) {
-
-    // 			} else {
-    // 				self.productData = res.body.ok
-    // 				// self.$f7.reinitPageSwiper('#app')
-    // 				// self.$f7.init();
-    // 			}
-    // 		}
-    // 	})
-    // }
-
-
 	}
 </script>
 

@@ -16,14 +16,14 @@ const mutations = {
   ['PRODUCTDETAIL'] (state, value){
     state.productDetail = value || state.productData;
   }, 
-  ['SHOE_SIZE'] (state, value){
-    state.shoeSize = value || state.shoeSize;
+  ['PRO_NAME'] (state, value){
+    state.pro_name = value || state.pro_name;
   }, 
-  ['SHOE_COLOR'] (state, value){
-    state.shoeColor = value || state.shoeColor;
+  ['PRO_DATE'] (state, value){
+    state.pro_date = value || state.pro_date;
   }, 
-  ['SHOE_TYPE'] (state, value){
-    state.shoeType = value || state.shoeType;
+  ['PRO_PRICE'] (state, value){
+    state.pro_price = value || state.pro_price;
   },
   ['LOADING'] (state, value){
     state.isloading = value || state.isloading;

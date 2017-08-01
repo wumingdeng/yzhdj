@@ -31,10 +31,10 @@
 			</f7-card-content>
 		</f7-card>
 		<f7-list style="margin:15px 0">
-			<f7-list-item title="我的订单" link="/order"></f7-list-item>
-			<f7-list-item title="我的产检" link="/record"></f7-list-item>
-			<f7-list-item title="我的管家" link="/"></f7-list-item>
-			<f7-list-item title="帮助信息" link="/contacts/"></f7-list-item>
+			<f7-list-item title="我的订单" link="/order" @click="$router.push('/order')"></f7-list-item>
+			<f7-list-item title="我的产检" link="/check" @click="$router.push('/check')"></f7-list-item>
+			<f7-list-item title="我的管家" link="/manger" @click="$router.push('/manger')"></f7-list-item>
+			<f7-list-item title="帮助信息" link="/"></f7-list-item>
 		</f7-list>
 	</f7-page>
 </template>

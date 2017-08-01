@@ -23,7 +23,7 @@ export default {
     name: 'home',
     data() {
         return {
-            meun: [{id:1,name:'催乳师'}, {id:2,name:'新生儿专家'}, {id:3,name:'妇产科专家'}, {id:4,name:'营养调理师'}]
+            meun:this.$store.state.productData
         }
     },
     methods: {
@@ -35,5 +35,15 @@ export default {
             this.$router.push({name:'adpage',params:{m:n}})
         }
     },
+    beforeRouteEnter(to,from,next){
+        //获取首页的配置信息
+        window.Global.s.dispatch('getHomeData',{
+            self:window.Global.Vue,
+            callback:next
+        })
+    },
+    mounted() {
+        this.$data.meun = this.$store.state.productData
+    }
 }
 </script>

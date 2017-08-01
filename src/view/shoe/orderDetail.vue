@@ -6,9 +6,9 @@
 			</f7-card-header>
 			<f7-card-content>
 				<f7-grid>
-						服务项目：<br><br>
-						服务价格：<br><br>
-						服务开始时间:<br>
+						服务项目：{{$store.state.productDetail.name}}<br><br>
+						服务价格：{{$store.state.productDetail.cur_price}}<br><br>
+						服务开始时间:{{$store.state.productDetail.desc_service_time}}<br>
 				</f7-grid>
 			</f7-card-content>
 			<f7-card-footer>
@@ -20,6 +20,7 @@
 			<f7-card-header>
 				服务条款		
 			</f7-card-header>
+				{{$store.state.productDetail.desc_content}}
 			<f7-card-content>
 				
 			</f7-card-content>
@@ -29,10 +30,10 @@
 		</f7-card>
 		
  		<div class="navFooter">
-        <span style="width:70%;"><f7-button style="background-color:#ffffff;color:#000000" class="pre" @click="$router.push('/order')">
+        <span style="width:70%;"><f7-button style="background-color:#ffffff;color:#000000" class="pre">
           订金：{{100}}元
         </f7-button></span>
-        <span style="width:30%;"><f7-button class="pre" @click="">微信支付</f7-button></span>
+        <span style="width:30%;"><f7-button class="pre" @click="onPay">微信支付</f7-button></span>
     </div>
 	</f7-page>
 </template>
@@ -62,75 +63,11 @@
 					'订单已取消'
 				],
 				popupOpened:false,
-        dateObj:{}, //存物流已有的日期
         haveData:false,
-        logisticsData:{
-          "EBusinessID": "1287326",
-          "ShipperCode": "YTO",
-          "Success": true,
-          "LogisticCode": "12345678",
-          "State": "2",
-          "Traces": [
-            {
-              "AcceptTime": "2017-05-18 10:12:38",
-              "AcceptStation": "圆通合作点【指尖快递】快件已到达绿地蓝海国际大厦B座负一层驿站,如有疑问请联系055163520604"
-            },
-            {
-              "AcceptTime": "2017-05-19 15:16:13",
-              "AcceptStation": "圆通合作点【指尖快递】快件已到达港汇广场A座负一层驿站,如有疑问请联系13515644171"
-            },
-            {
-              "AcceptTime": "2017-05-19 15:16:13",
-              "AcceptStation": "圆通合作点【指尖快递】快件已到达港汇广场A座负一层驿站,如有疑问请联系13515644171"
-            },
-            {
-              "AcceptTime": "2017-05-19 15:16:13",
-              "AcceptStation": "圆通合作点【指尖快递】快件已到达港汇广场A座负一层驿站,如有疑问请联系13515644171"
-            },
-          ]
-        }
 			}
 		},
 		methods:{
 			timeToDate:timeToDate,
-			openLogistics() {
-        console.log('get logistics')
-        this.dateObj = {}
-        this.logisticsData = {}
-        this.popupOpened = true
-      	this.haveData = false
-        //取物流信息
-        this.$store.dispatch('getLogistics',{
-          self:this,
-          info:{
-            expCode:'',
-            expNo:'',
-            orderCode:this.orderData.id
-          },
-          callback(self, res) {
-            if (res.body.ok == 1) {
-              self.logisticsData = res.body.d;
-              if (self.logisticsData.Traces && self.logisticsData.Traces.length > 0) {
-              	self.haveData = true
-              }
-            }
-          }
-        })
-      },
-      getLogisticsDate(str) {
-        var date = str.substring(0,10)
-        date = date.replace(/\-/,'  ')
-        //同一天只显示一次
-        if (this.dateObj[date]) {
-          return ''
-        } else {
-          this.dateObj[date] = true
-          return date
-        }
-      },
-      getLogisticsTime(str) {
-        return str.substring(11)
-      },
 			onPay() {
 				this.isInPay = true
 				this.$store.dispatch('orderpay',{
@@ -170,6 +107,7 @@
 								self.orderData.status = self.orderstatus.waitChoice;
 						    // alert("支付成功");
 						    // 这里可以跳转到订单完成页面向用户展示
+								this.$router.push('/userInfo')
 						  }else{
 								self.$f7.alert('','支付失败,请重试');
 						  }

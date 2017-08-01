@@ -97,7 +97,7 @@ var routes = [
     }
   },  
   {
-    path: '/shoeDetail:id',
+    path: '/shoeDetail',
     name:'shoeDetail',
     component: shoeDetail,
     meta: { 

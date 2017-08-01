@@ -203,8 +203,7 @@ export function getHomeData ({commit, state},data) {
         onErrorHandler(response.body.err)
       } else {
         if (next) {
-          commit("SWIPEDATA",response.body.swipe);
-          commit("PRODUCTDATA",response.body.product);
+          commit("PRODUCTDATA",response.body.services);
           next();
         }
       }
